@@ -1,10 +1,7 @@
 import requests
 
 def get_gps_data():
-    """
-    Fetch GPS data using the OpenCage Geocoding API.
-    Replace 'Gorakhpur' with your location or use IP-based geolocation.
-    """
+
     api_key = "d82e5a3f317547aa9a9631fef007bae0" 
     location = "Gorakhpur" 
     url = f"https://api.opencagedata.com/geocode/v1/json?q={location}&key={api_key}"
@@ -32,5 +29,5 @@ if gps_data is not None:
     print(f"Latitude: {latitude}, Longitude: {longitude}")
 else:
     print("Unable to fetch GPS data. Using default location.")
-    latitude, longitude = 26.7482, 83.4465  # Default location (Gorakhpur, India)
+    latitude, longitude = 26.7482, 83.4465 
     print(f"Default Latitude: {latitude}, Longitude: {longitude}")

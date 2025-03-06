@@ -11,29 +11,29 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://iot-gps-system-1-default-rtdb.firebaseio.com/'  
 })
 
-# Store the starting location (initialize as None)
+
 starting_location = None
 
-#  folium map centered at the default location
-m = folium.Map(location=[26.7482, 83.4465], zoom_start=15)  # Default location (Gorakhpur, India)
+
+m = folium.Map(location=[26.7482, 83.4465], zoom_start=15)  # Default location
 
 def send_to_firebase(lat, lng):
     global starting_location, m
 
-    # If starting location is not set, set it to the current location
+    
     if starting_location is None:
         starting_location = (lat, lng)
         print(f"Starting location set to: {starting_location}")
-        # Add a marker for the starting location
+    
         folium.Marker(
             location=starting_location,
             popup="Starting Point",
             icon=folium.Icon(color="green")
         ).add_to(m)
 
-    # Calculate the distance from the starting location
+    # Calculate the distance 
     current_location = (lat, lng)
-    distance = geodesic(starting_location, current_location).meters  # Distance in meters
+    distance = geodesic(starting_location, current_location).meters 
 
     # Log the distance
     print(f"Distance from starting location: {distance:.2f} meters")
@@ -48,7 +48,7 @@ def send_to_firebase(lat, lng):
         'latitude': lat,
         'longitude': lng,
         'timestamp': int(time.time()),
-        'distance_from_start': distance  # Optional: Store distance in Firebase
+        'distance_from_start': distance 
     })
 
     # Update the map with the current location
@@ -58,7 +58,7 @@ def send_to_firebase(lat, lng):
         icon=folium.Icon(color="blue")
     ).add_to(m)
 
-    # Save the map to an HTML file and open it in the browser
+    # Save the map to an HTML file
     m.save("real_time_map.html")
     webbrowser.open("real_time_map.html")
 
@@ -66,10 +66,9 @@ def send_to_firebase(lat, lng):
 def simulate_gps_updates():
     # Example: Simulate movement by changing coordinates
     locations = [
-        (26.7482, 83.4465),  # Starting point (Gorakhpur, India)
-        (26.7500, 83.4500),  # Slight movement
-        (26.7600, 83.4600),  # Further movement (> 500 meters)
-    ]
+        (26.7482, 83.4465),  
+        (26.7500, 83.4500), 
+        (26.7600, 83.4600),  
 
     for lat, lng in locations:
         print(f"\nUpdating location to: ({lat}, {lng})")
