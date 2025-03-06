@@ -8,13 +8,13 @@ import webbrowser
 # Initialize Firebase
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://iot-gps-system-1-default-rtdb.firebaseio.com/'  # Replace with your actual database URL
+    'databaseURL': 'https://iot-gps-system-1-default-rtdb.firebaseio.com/'  
 })
 
 # Store the starting location (initialize as None)
 starting_location = None
 
-# Create a folium map centered at the default location
+#  folium map centered at the default location
 m = folium.Map(location=[26.7482, 83.4465], zoom_start=15)  # Default location (Gorakhpur, India)
 
 def send_to_firebase(lat, lng):
