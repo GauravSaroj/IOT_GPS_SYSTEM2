@@ -1,0 +1,5 @@
+Flask
+folium
+firebase-admin
+geopy
+requests
